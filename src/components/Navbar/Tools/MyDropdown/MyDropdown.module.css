@@ -1,0 +1,41 @@
+select {
+  padding: 5px;
+  font-size: 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: white;
+  cursor: pointer;
+  font-style: inherit;
+  font-family: inherit;
+  text-transform: uppercase;
+  width: auto;
+  font-weight: 600;
+  cursor: pointer;
+  max-width: 200px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+select:focus {
+  outline: none;
+  border-color: teal;
+  box-shadow: 0 0 0 2px teal(0, 123, 255, 0.25);
+}
+select:hover {
+  outline: none;
+  border-color: teal;
+  box-shadow: 0 0 0 2px teal(0, 123, 255, 0.25);
+}
+
+select::-ms-expand {
+  display: none;
+}
+
+option {
+  font-size: 12px;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+option:first-child {
+  font-weight: bold;
+}

@@ -1,0 +1,9 @@
+.myCheckbox {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  font-size: 12px;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-weight: 600;
+}

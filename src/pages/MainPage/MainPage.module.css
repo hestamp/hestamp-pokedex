@@ -11,7 +11,7 @@
   flex-direction: column;
   grid-column: 1;
 }
-.myButtDiv {
+.onePokemon {
   display: none;
   flex-direction: column;
   width: 400px;
@@ -51,7 +51,7 @@
 
     position: relative;
   }
-  .goButt {
+  .oneContainer {
     display: flex;
     flex-direction: column;
     width: 400px;
@@ -112,6 +112,9 @@
 
 .pickedBlock {
   background-color: teal;
+}
+
+.pickedBlock h3 {
   color: white;
 }
 .pokeBlock:hover {
@@ -127,6 +130,9 @@
 .pokeBlock h3 {
   z-index: 12;
 }
+.pokeBlock h3::first-letter {
+  text-transform: uppercase;
+}
 
 .pokeBlock::after {
   content: '';
@@ -138,7 +144,7 @@
   z-index: -1;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
-  background: linear-gradient(to bottom, transparent, black);
+  background: linear-gradient(to bottom, transparent, gray);
   transition: 0.3s;
 }
 
@@ -147,22 +153,31 @@
   justify-content: center;
 }
 
-.tagsBLock {
-  display: flex;
-  justify-content: space-between;
+.tagsBlock {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(10px, 1fr));
+  gap: 5px;
 }
 
-.tagsBLock p {
+.filterSetting {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+}
+
+.oneTag {
   background-color: white;
   padding: 5px 10px;
   border-radius: 10px;
   text-transform: uppercase;
   font-weight: 600;
+  font-size: 12px;
   transition: 0.3s;
 }
-.tagsBLock p:hover {
+.oneTag:hover {
   background-color: gray;
   color: white;
+  transition: 0.3s;
 }
 
 .myButt {
