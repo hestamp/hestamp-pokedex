@@ -4,8 +4,8 @@
   border-bottom: 3px dashed white;
   border-left: 3px dashed white;
   border-radius: 50%;
-  width: 30px;
-  height: 30px;
+  width: 18px;
+  height: 18px;
   align-self: center;
   animation: spin 1s linear infinite;
 }

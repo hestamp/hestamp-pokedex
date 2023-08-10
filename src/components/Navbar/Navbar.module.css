@@ -6,3 +6,7 @@
   align-items: center;
   padding: 1rem;
 }
+
+.navbar h1 {
+  cursor: pointer;
+}

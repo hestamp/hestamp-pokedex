@@ -9,6 +9,7 @@
 .gridNbutt {
   display: flex;
   flex-direction: column;
+  align-items: center;
   grid-column: 1;
 }
 .onePokemon {
@@ -45,10 +46,9 @@
     flex-direction: unset;
   }
 
-  .myButtDiv {
+  .onePokemon {
     display: flex;
     width: 400px;
-
     position: relative;
   }
   .oneContainer {
@@ -89,6 +89,11 @@
 }
 
 .pokeImg {
+  width: 120px;
+  align-self: center;
+  height: auto;
+}
+.pokeGif {
   width: auto;
   height: auto;
 }
@@ -110,6 +115,14 @@
   box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+.noPokemon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  justify-content: center;
+}
+
 .pickedBlock {
   background-color: teal;
 }
@@ -125,6 +138,7 @@
 }
 .pokeBlock:hover .pokeImg {
   transition: 0.3s;
+  transform: scale(1.03);
 }
 
 .pokeBlock h3 {
@@ -162,13 +176,15 @@
 .filterSetting {
   display: flex;
   width: 100%;
-  justify-content: space-around;
+  max-width: 95%;
+  justify-content: space-between;
 }
 
 .oneTag {
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.3);
+  opacity: 0.9;
   padding: 5px 10px;
-  border-radius: 10px;
+  border-radius: 5px;
   text-transform: uppercase;
   font-weight: 600;
   font-size: 12px;
@@ -194,6 +210,28 @@
 }
 
 .myButt:hover {
+  opacity: 0.8;
+  transition: 0.3s;
+}
+
+.noFlex {
+  max-width: 150px;
+  justify-self: center;
+}
+.myButtReset {
+  display: flex;
+  justify-content: center;
+  color: white;
+  background-color: gray;
+  padding: 5px 0;
+  width: 100px;
+  justify-self: center;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 5px;
+}
+
+.myButtReset:hover {
   opacity: 0.8;
   transition: 0.3s;
 }
