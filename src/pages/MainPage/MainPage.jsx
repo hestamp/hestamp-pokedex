@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import {
   uCurrentPokemon,
   uIsErr,
+  uLoadCount,
   uPokeTypes,
   uPokemonArray,
 } from '../../store/tempSlice'
@@ -20,10 +21,9 @@ const MainPage = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const limit = 16
-  const [loadedTimes, setLoadedTimes] = useState(0)
+
   const [pickedPokemon, setPickedPokemon] = useState(null)
-  const [pickedId, setPickedId] = useState(null)
-  const [currentPoke, setCurrentPoke] = useState(null)
+
   const [isLoading, setIsLoading] = useState(false)
   const [selectedType, setSelectedType] = useState('')
   const [isChecked, setIsChecked] = useState(true)
@@ -33,20 +33,17 @@ const MainPage = () => {
     setIsChecked(value)
   }
 
-  const { pokemonArray, currentPokemon, isErr, pokeTypes } = useSelector(
-    (state) => state.temp
-  )
+  const { pokemonArray, currentPokemon, isErr, pokeTypes, loadCount } =
+    useSelector((state) => state.temp)
 
   const clickItem = (item, pokeId, poke) => {
     if (pickedPokemon === item) {
       setPickedPokemon(null)
-      setPickedId(null)
-      setCurrentPoke(null)
+
       dispatch(uCurrentPokemon(null))
     } else {
       setPickedPokemon(item)
-      setPickedId(pokeId)
-      setCurrentPoke(poke)
+
       dispatch(uCurrentPokemon(poke))
     }
 
@@ -75,7 +72,7 @@ const MainPage = () => {
     try {
       setIsLoading(true)
       const response = await myAxios.get(
-        `pokemon/?limit=${limit}&offset=${loadedTimes * 16}`
+        `pokemon/?limit=${limit}&offset=${loadCount * 16}`
       )
 
       if (response.data) {
@@ -119,7 +116,8 @@ const MainPage = () => {
       }
     } finally {
       setIsLoading(false)
-      setLoadedTimes((prev) => prev + 1)
+      dispatch(uLoadCount(loadCount + 1))
+
       if (selectedType != '') {
         handleTypeSelect(selectedType)
       }
