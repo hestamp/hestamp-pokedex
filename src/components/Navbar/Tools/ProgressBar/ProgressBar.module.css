@@ -2,6 +2,8 @@
   width: 90%;
   display: grid;
   align-self: center;
+  align-items: center;
+  justify-content: center;
   grid-template-columns: 1fr 1fr 3fr;
 }
 
