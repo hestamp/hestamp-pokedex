@@ -62,17 +62,18 @@
     align-items: center;
     transform: translateY(-50%);
   }
+}
 
-  .roundDiv {
-    width: 90%;
-    height: 80%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid lightgray;
-    border-radius: 10px;
-  }
+.midDiv {
+  padding-top: 1rem;
+  width: 90%;
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  gap: 1rem;
 }
 
 .imgDiv {
@@ -93,6 +94,7 @@
   align-self: center;
   height: auto;
 }
+
 .pokeGif {
   width: auto;
   height: auto;
@@ -164,7 +166,14 @@
 
 .nameAndTag {
   display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
+}
+
+.nameAndTag h5 {
+  color: gray;
+  z-index: 100;
 }
 
 .tagsBlock {
@@ -176,6 +185,7 @@
 .filterSetting {
   display: flex;
   width: 100%;
+  height: 30px;
   max-width: 95%;
   justify-content: space-between;
 }
@@ -189,6 +199,7 @@
   font-weight: 600;
   font-size: 12px;
   transition: 0.3s;
+  cursor: pointer;
 }
 .oneTag:hover {
   background-color: gray;
@@ -205,13 +216,18 @@
   padding: 15px;
   font-size: 18px;
   font-weight: 600;
-  margin-bottom: 1rem;
+  margin: 1rem;
   border-radius: 5px;
 }
 
 .myButt:hover {
   opacity: 0.8;
   transition: 0.3s;
+}
+
+.dropBlock {
+  display: flex;
+  gap: 1rem;
 }
 
 .noFlex {
@@ -234,4 +250,10 @@
 .myButtReset:hover {
   opacity: 0.8;
   transition: 0.3s;
+}
+
+.pokeImgWide {
+  width: 180px;
+  align-self: center;
+  height: auto;
 }

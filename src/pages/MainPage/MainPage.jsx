@@ -13,6 +13,9 @@ import {
 import MyDropdown from '../../components/Navbar/Tools/MyDropdown/MyDropdown'
 import MyCheckbox from '../../components/Navbar/Tools/MyCheckbox/MyCheckbox'
 import { useNavigate } from 'react-router-dom'
+import { repoGif, sortMode, typeColors } from '../../components/static/data'
+import { getTypeColor } from '../../components/functions'
+import PokeBlock from '../../components/PokeBlock/PokeBlock'
 const MainPage = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -29,37 +32,6 @@ const MainPage = () => {
   const handleCheckboxChange = (value) => {
     setIsChecked(value)
   }
-
-  const getTypeColor = (typeName) => {
-    const typeColors = {
-      normal: '#A8A8A8',
-      fighting: '#D67873',
-      flying: '#83A2E3',
-      poison: '#C183C1',
-      ground: '#E0C791',
-      rock: '#C9BB8A',
-      bug: '#C2D21F',
-      ghost: '#8571BE',
-      steel: '#CCCCCC',
-      fire: '#FF9A58',
-      water: '#6A92E3',
-      grass: '#79C957',
-      electric: '#FFD54F',
-      psychic: '#FF80B2',
-      ice: '#AEE3FF',
-      dragon: '#8A75FF',
-      dark: '#8E8E99',
-      fairy: '#FFA1E3',
-      unknown: '#B0B0B0',
-      shadow: '#6B6B6B',
-    }
-
-    const typeNameLower = typeName.toLowerCase()
-    return typeColors[typeNameLower] || null
-  }
-
-  const repoGif =
-    'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/'
 
   const { pokemonArray, currentPokemon, isErr, pokeTypes } = useSelector(
     (state) => state.temp
@@ -79,14 +51,12 @@ const MainPage = () => {
     }
 
     if (window.innerWidth <= 1200) {
-      //
       navigate(`/pokemon/${pokeId}`)
     }
   }
 
   const handleTypeSelect = (type) => {
     setSelectedType(type)
-    console.log(type)
     onTypeSelect(type)
   }
 
@@ -97,11 +67,11 @@ const MainPage = () => {
       }
       return false
     })
-    console.log(filteredArr)
     setFilteredArray(filteredArr)
   }
 
   const getAllPokemons = async () => {
+    let updatedArray
     try {
       setIsLoading(true)
       const response = await myAxios.get(
@@ -115,9 +85,7 @@ const MainPage = () => {
           rest: null,
         }))
 
-        let updatedArray = [...pokemonArray, ...updatedPokemonArray]
-
-        dispatch(uPokemonArray(updatedArray))
+        updatedArray = [...pokemonArray, ...updatedPokemonArray]
 
         await Promise.all(
           updatedPokemonArray.map(async (pokemon) => {
@@ -139,8 +107,6 @@ const MainPage = () => {
               )
 
               updatedArray = lastUpdateArr
-
-              dispatch(uPokemonArray(lastUpdateArr))
             } catch (error) {
               console.error('some error, sorry', error)
             }
@@ -157,6 +123,7 @@ const MainPage = () => {
       if (selectedType != '') {
         handleTypeSelect(selectedType)
       }
+      dispatch(uPokemonArray(updatedArray))
     }
   }
 
@@ -204,11 +171,20 @@ const MainPage = () => {
       <div className={styles.gridNbutt}>
         <div className={styles.filterSetting}>
           {pokeTypes && (
-            <MyDropdown
-              handleTypeSelect={handleTypeSelect}
-              selectedType={selectedType}
-              pokeTypes={pokeTypes}
-            />
+            <div className={styles.dropBlock}>
+              <MyDropdown
+                handleTypeSelect={handleTypeSelect}
+                selectedType={selectedType}
+                array={pokeTypes}
+                all="TYPE"
+              />
+              {/* <MyDropdown
+                handleTypeSelect={handleTypeSelect}
+                selectedType={selectedType}
+                array={sortMode}
+                all="SORT"
+              /> */}
+            </div>
           )}
           <MyCheckbox
             label="Animated"
@@ -222,7 +198,7 @@ const MainPage = () => {
           filteredArray.length == 0 &&
           selectedType == '' ? (
             pokemonArray.map((poke, id) => {
-              const pokeId = extractIdFromUrl(poke.url)
+              const pokeId = extractIdFromUrl(poke.url) || null
 
               return (
                 <div
@@ -298,7 +274,7 @@ const MainPage = () => {
                     ) : (
                       <img
                         className={styles.pokeImg}
-                        src={poke.rest.sprites.other.home.front_default}
+                        src={poke.rest.sprites.other.dream_world.front_default}
                       />
                     )}
                   </div>
@@ -338,7 +314,7 @@ const MainPage = () => {
           ) : isErr ? (
             <p>Some error, please reload page</p>
           ) : (
-            <MyLoader />
+            <></>
           )}
         </div>
         {isLoading && <MyLoader />}
@@ -348,10 +324,15 @@ const MainPage = () => {
       </div>
       <div className={styles.onePokemon}>
         <div className={styles.oneContainer}>
-          <div className={styles.roundDiv}>
-            <p>Test me text{pickedPokemon}</p>
-            <p>T{pickedId}</p>
-          </div>
+          {currentPokemon ? (
+            <PokeBlock />
+          ) : (
+            <div className={styles.midDiv}>
+              {' '}
+              <h3>Who is your pokemon?</h3>
+              <img className={styles.pokeImgWide} src="images/pokemon.webp" />
+            </div>
+          )}
         </div>
       </div>
     </div>

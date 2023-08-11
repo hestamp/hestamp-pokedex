@@ -1,0 +1,86 @@
+.roundDiv {
+  padding-top: 1rem;
+  width: 90%;
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: top;
+  align-items: center;
+  border-radius: 10px;
+  gap: 1rem;
+}
+
+.nameNum {
+  display: flex;
+  width: 100%;
+  max-width: 95%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nameNum h2::first-letter {
+  text-transform: uppercase;
+}
+
+.tagMe {
+  display: flex;
+  width: 100%;
+  max-width: 95%;
+  justify-content: left;
+}
+
+.tagsBlock {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(10px, 1fr));
+  gap: 5px;
+}
+
+.statBlock {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.oneTag {
+  background-color: rgba(255, 255, 255, 0.3);
+  opacity: 0.9;
+  padding: 5px 10px;
+  border-radius: 5px;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 12px;
+  transition: 0.3s;
+  cursor: pointer;
+}
+.oneTag:hover {
+  background-color: gray;
+  color: white;
+  transition: 0.3s;
+}
+
+.imgDiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  height: 200px;
+}
+
+.pokeImgWide {
+  max-width: 200px;
+  max-height: 200px;
+  align-self: center;
+}
+
+.infoDiv {
+  position: relative;
+  padding: 60px 0;
+  top: -60px;
+  z-index: -5;
+  border-radius: 30px;
+  background-color: white;
+  width: 100%;
+  height: auto;
+  box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.1);
+}
