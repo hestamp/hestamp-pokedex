@@ -22,6 +22,8 @@ const MainPage = () => {
   const navigate = useNavigate()
   const limit = 16
 
+  const [isActiveButt, setIsActiveButt] = useState(true)
+
   const [pickedPokemon, setPickedPokemon] = useState(null)
 
   const [isLoading, setIsLoading] = useState(false)
@@ -67,7 +69,14 @@ const MainPage = () => {
     setFilteredArray(filteredArr)
   }
 
+  const activeFuncGo = () => {
+    if (isActiveButt) {
+      getAllPokemons()
+    }
+  }
+
   const getAllPokemons = async () => {
+    setIsActiveButt(false)
     let updatedArray
     try {
       setIsLoading(true)
@@ -117,7 +126,7 @@ const MainPage = () => {
     } finally {
       setIsLoading(false)
       dispatch(uLoadCount(loadCount + 1))
-
+      setIsActiveButt(true)
       if (selectedType != '') {
         handleTypeSelect(selectedType)
       }
@@ -316,7 +325,7 @@ const MainPage = () => {
           )}
         </div>
         {isLoading && <MyLoader />}
-        <button className={styles.myButt} onClick={getAllPokemons}>
+        <button className={styles.myButt} onClick={activeFuncGo}>
           Load More
         </button>
       </div>
